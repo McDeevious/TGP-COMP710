@@ -27,7 +27,7 @@ void Game::DestroyInstance()
 	sm_pInstance = 0;
 }
 
-Game::Game() 
+Game::Game() ///////
 	: m_pRenderer(0)
 	, m_pInputSystem(0)
 	, m_pSceneSplash(0)
