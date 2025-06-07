@@ -319,7 +319,7 @@ void KnightClass::Process(float deltaTime) {
             activeAttack->SetX(m_knightPosition.x);
             activeAttack->SetY(m_knightPosition.y);
 
-            float scaleX = (m_knightWalk) ? m_knightWalk->GetScaleX() : 7.5f; 
+            float scaleX = (m_knightWalk) ? m_knightWalk->GetScaleX() : m_scale;
             float direction = (scaleX < 0) ? -m_scale : m_scale;
             activeAttack->SetScale(direction, -m_scale);
 

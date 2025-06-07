@@ -114,9 +114,6 @@
     <ClCompile Include="eliteOrc.h">
       <Filter>Header Files\Forest Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="eliteOrc.cpp">
-      <Filter>Source Files\Forest Monsters</Filter>
-    </ClCompile>
     <ClCompile Include="riderOrc.cpp">
       <Filter>Source Files\Forest Monsters</Filter>
     </ClCompile>
@@ -158,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="SceneGuide.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="eliteOrc.cpp">
+      <Filter>Source Files\Forest Monsters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
