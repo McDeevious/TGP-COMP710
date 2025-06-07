@@ -75,6 +75,7 @@ private:
 	bool m_isDead;
 	bool m_isHurt; 
 	int m_knighthealth;
+	float m_scale;
 
 	//Player attacks
 	AttackType m_attackState;

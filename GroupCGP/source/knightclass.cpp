@@ -21,6 +21,7 @@ KnightClass::KnightClass()
     , m_isHurt(false)
     , m_isDead(false)
     , m_knighthealth(125)
+    , m_scale(4.5f)
     //boundaries
     , m_leftBoundary(0.0f)
     , m_rightBoundary(1024.0f)    
@@ -121,7 +122,7 @@ bool KnightClass::Initialise(Renderer& renderer)
         m_knightIdle->SetLooping(true);
         m_knightIdle->SetX(m_knightPosition.x); 
         m_knightIdle->SetY(m_knightPosition.y);
-        m_knightIdle->SetScale(7.5f, -7.5f);
+        m_knightIdle->SetScale(m_scale, -m_scale);
         m_knightIdle->Animate(); 
     }
    
@@ -134,7 +135,7 @@ bool KnightClass::Initialise(Renderer& renderer)
         m_knightWalk->SetLooping(true); 
         m_knightWalk->SetX(m_knightPosition.x);
         m_knightWalk->SetY(m_knightPosition.y);
-        m_knightWalk->SetScale(7.5f, -7.5f);
+        m_knightWalk->SetScale(m_scale, -m_scale);
         m_knightWalk->Animate();
         SetBoundaries(0, renderer.GetWidth(), 0, renderer.GetHeight());  
     }
@@ -148,7 +149,7 @@ bool KnightClass::Initialise(Renderer& renderer)
         m_knightHurt->SetLooping(false);       
         m_knightHurt->SetX(m_knightPosition.x);
         m_knightHurt->SetY(m_knightPosition.y);
-        m_knightHurt->SetScale(7.5f, -7.5f);
+        m_knightHurt->SetScale(m_scale, -m_scale);
     }
 
     //Load knight's death sprite
@@ -160,7 +161,7 @@ bool KnightClass::Initialise(Renderer& renderer)
         m_knightDeath->SetLooping(false);       
         m_knightDeath->SetX(m_knightPosition.x);
         m_knightDeath->SetY(m_knightPosition.y);
-        m_knightDeath->SetScale(7.5f, -7.5f); 
+        m_knightDeath->SetScale(m_scale, -m_scale);
     }
 
     //Load Attack 1
@@ -172,7 +173,7 @@ bool KnightClass::Initialise(Renderer& renderer)
         m_knightAttack1->SetLooping(false);
         m_knightAttack1->SetX(m_knightPosition.x);
         m_knightAttack1->SetY(m_knightPosition.y);
-        m_knightAttack1->SetScale(7.5f, -7.5f);
+        m_knightAttack1->SetScale(m_scale, -m_scale);
     }
 
     //Load Attack 2
@@ -184,7 +185,7 @@ bool KnightClass::Initialise(Renderer& renderer)
         m_knightAttack2->SetLooping(false);
         m_knightAttack2->SetX(m_knightPosition.x);
         m_knightAttack2->SetY(m_knightPosition.y);
-        m_knightAttack2->SetScale(7.5f, -7.5f);
+        m_knightAttack2->SetScale(m_scale, -m_scale);
     }
 
     //Load Special Attack
@@ -196,7 +197,7 @@ bool KnightClass::Initialise(Renderer& renderer)
         m_knightSpecial->SetLooping(false);
         m_knightSpecial->SetX(m_knightPosition.x);
         m_knightSpecial->SetY(m_knightPosition.y);
-        m_knightSpecial->SetScale(7.5f, -7.5f);
+        m_knightSpecial->SetScale(m_scale, -m_scale);
     }
 
     //Load Block
@@ -208,7 +209,7 @@ bool KnightClass::Initialise(Renderer& renderer)
         m_knightBlock->SetLooping(false);
         m_knightBlock->SetX(m_knightPosition.x);
         m_knightBlock->SetY(m_knightPosition.y);
-        m_knightBlock->SetScale(7.5f, -7.5f);
+        m_knightBlock->SetScale(m_scale, -m_scale);
     }
 
     if (!m_knightIdle || !m_knightWalk || !m_knightHurt || !m_knightDeath || !m_knightAttack1 || !m_knightAttack2 || !m_knightSpecial || !m_knightBlock) 
@@ -319,8 +320,8 @@ void KnightClass::Process(float deltaTime) {
             activeAttack->SetY(m_knightPosition.y);
 
             float scaleX = (m_knightWalk) ? m_knightWalk->GetScaleX() : 7.5f; 
-            float direction = (scaleX < 0) ? -7.5f : 7.5f; 
-            activeAttack->SetScale(direction, -7.5f); 
+            float direction = (scaleX < 0) ? -m_scale : m_scale;
+            activeAttack->SetScale(direction, -m_scale);
 
             if ((!activeAttack->IsAnimating() && m_attackState != BLOCK) || m_attackDuration > timeoutDuration)
             {
@@ -369,8 +370,8 @@ void KnightClass::Process(float deltaTime) {
                 m_knightWalk->SetX(m_knightPosition.x);
                 m_knightWalk->SetY(m_knightPosition.y);
 
-                float direction = m_knightLeft ? -7.5f : 7.5f;
-                m_knightWalk->SetScale(direction, -7.5f); 
+                float direction = m_knightLeft ? -m_scale : m_scale;
+                m_knightWalk->SetScale(direction, -m_scale);
             }
         }
         //Handle normal movement animations
@@ -386,8 +387,8 @@ void KnightClass::Process(float deltaTime) {
                 m_knightWalk->SetX(m_knightPosition.x);
                 m_knightWalk->SetY(m_knightPosition.y);
 
-                float direction = m_knightLeft ? -7.5 : 7.5;
-                m_knightWalk->SetScale(direction, -7.5);
+                float direction = m_knightLeft ? -m_scale : m_scale;
+                m_knightWalk->SetScale(direction, -m_scale);
             }
         }
         else {
@@ -402,8 +403,8 @@ void KnightClass::Process(float deltaTime) {
                 m_knightIdle->SetX(m_knightPosition.x);
                 m_knightIdle->SetY(m_knightPosition.y);
 
-                float direction = m_knightLeft ? -7.5 : 7.5; 
-                m_knightIdle->SetScale(direction, -7.5);  
+                float direction = m_knightLeft ? -m_scale : m_scale;
+                m_knightIdle->SetScale(direction, -m_scale);
             }
 
         }
@@ -713,8 +714,8 @@ const Vector2& KnightClass::GetPosition() const
 
 Hitbox KnightClass::GetHitbox() const{ 
 
-    float halfWidth = (100.0f * 7.5f) / 2.0f;
-    float halfHeight = (100.0f * 7.5f) / 2.0f;
+    float halfWidth = (100.0f * m_scale) / 2.0f;
+    float halfHeight = (100.0f * m_scale) / 2.0f;
 
     if (m_isJumping) {
         halfHeight *= 0.75f; // 25% smaller in air
@@ -722,7 +723,7 @@ Hitbox KnightClass::GetHitbox() const{
 
     return {
         m_knightPosition.x - halfWidth,
-        m_knightPosition.y - 100.0f * 7.5f,
+        m_knightPosition.y - 100.0f * m_scale,
         halfWidth * 2.0f,
         halfHeight * 2.0f
     };
@@ -732,8 +733,8 @@ Hitbox KnightClass::GetHitbox() const{
 
 Hitbox KnightClass::GetAttackHitbox() const {
     float attackWidth = 80.0f;  // Width of the attack zone
-    float attackHeight = 100.0f * 7.5f;
-    float direction = (m_knightWalk && m_knightWalk->GetScaleX() < 0) ? -7.5f : 7.5f;
+    float attackHeight = 100.0f * m_scale;
+    float direction = (m_knightWalk && m_knightWalk->GetScaleX() < 0) ? -m_scale : m_scale;
 
     float offsetX = (direction < 0) ? 50.0f : -attackWidth - 50.0f; 
 
