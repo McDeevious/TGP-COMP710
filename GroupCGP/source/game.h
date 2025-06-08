@@ -12,7 +12,7 @@
 // Forward declarations:
 class Renderer;
 class InputSystem;
-class Game
+class Game //just is just a test
 {
 	// Member methods:
 public:
